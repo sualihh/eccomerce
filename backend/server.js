@@ -16,7 +16,7 @@ app.use(cors())
 // api end points
 
 app.get('/', (req, res) => {
-   res.send("API WORKS") 
+   res.send("API WORKS Successfully") 
 })
 
 app.listen(port, () => {
