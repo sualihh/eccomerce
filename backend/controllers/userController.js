@@ -10,7 +10,7 @@ const loginUser = async (req, res) => {
 // route for registration
 
 const registerUser = async (req, res) => {
-
+    res.json({msg: "register api working"})
 }
 
 
@@ -19,4 +19,4 @@ const adminLogin= async (req, res) => {
 
 }
 
-export {loginuser, registerUser, adminLogin}
+export {loginUser, registerUser, adminLogin}
