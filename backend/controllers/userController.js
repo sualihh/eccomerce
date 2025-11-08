@@ -1,8 +1,13 @@
 import validator from "validator"
 import bcrypt from "bcrypt"
-import userModel from "../models/userModel";
+import jwt from "jsonwebtoken"
+import userModel from "../models/userModel.js";
 
 
+
+const createToken = (id) => {
+    return jwt.sign({id}, process.env.JWT_SECRET)
+}
 // route for login
 const loginUser = async (req, res) => {
     
@@ -48,9 +53,15 @@ const registerUser = async (req, res) => {
             email, 
             password:hashedPassword
         })
+        
+        const user = await newUser.save();
+
+        const token = createToken(user._id);
+        res.json({success:true, token});
 
     } catch (error) {
-        
+        console.log(error);
+        res.json({success:false, msg: error.msg})
     }
 }
 
