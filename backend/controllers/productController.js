@@ -28,7 +28,7 @@ const addProduct = async (req, res) => {
 
         console.log(name, description, price, category, subCategory, sizes, bestSeller);
         
-
+    // console.log(sizes)
         // to store in mongodb
         const productData = {
           name, 
@@ -37,14 +37,14 @@ const addProduct = async (req, res) => {
           category,
           subCategory,
           bestSeller: bestSeller === 'true' ? true : false,
-          sizes:   JSON.parse(sizes) ,
+          sizes: JSON.parse(sizes) ,
           images: imagesURL,
           date:Date.now()
         }
 
 
-        console.log(productData);
-
+        // console.log(productData);
+// save to database
         const product = new productModel(productData);
         await product.save();
 
@@ -57,8 +57,16 @@ const addProduct = async (req, res) => {
 }
 
 // to get all products
-const listProduct = (req, res) => {
+const listProduct = async (req, res) => {
+  try {
+    
+    // fetch all products from db using find() method
+    const products = await productModel.find();
+    res.json({success:true, products})
 
+  } catch (error) {
+        res.json({success:false, msg: error.msg})
+  }
 }
 
 //remove 
