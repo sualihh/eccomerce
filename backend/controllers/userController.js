@@ -28,7 +28,8 @@ const loginUser = async (req, res) => {
             res.json({success:false, msg: 'invalid credentials'})
         }
     } catch (error) {
-        
+        console.log(error);
+        res.json({success:false, msg: error.msg})
     }
 }
 
