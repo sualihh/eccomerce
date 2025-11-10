@@ -77,6 +77,7 @@ const registerUser = async (req, res) => {
         const user = await newUser.save();
 
         const token = createToken(user._id);
+        // to set session
         res.json({success:true, token});
 
     } catch (error) {
@@ -89,6 +90,21 @@ const registerUser = async (req, res) => {
 // for admin
 const adminLogin= async (req, res) => {
 
+  // validating  admin from env 
+    try {
+        const {email, password} = req.body;
+
+        if(email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASSWORD){
+            const token = jwt.sign(email+password,process.env.JWT_SECRET);
+            res.json({success:true, token})
+    } else {
+        console.log(error);
+        res.json({success:false})
+    }
+} catch (error) {
+        console.log(error);
+        res.json({success:false, msg: error.msg})
+}
 }
 
 export {loginUser, registerUser, adminLogin}
