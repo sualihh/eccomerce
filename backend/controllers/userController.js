@@ -63,7 +63,7 @@ const registerUser = async (req, res) => {
             return res.json({success:false, msg: 'enter 8 character password'})   
         }
 
-        // hash password
+        // hash  password
 
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
