@@ -68,7 +68,7 @@ const registerUser = async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
 
-        
+
         const newUser = new userModel({
             name, 
             email, 
@@ -100,8 +100,8 @@ const adminLogin= async (req, res) => {
             const token = jwt.sign(email+password,process.env.JWT_SECRET);
             res.json({success:true, token})
     } else {
-        console.log(error);
-        res.json({success:false})
+         console.log(error);
+         res.json({success:false})
     }
 } catch (error) {
         console.log(error);
