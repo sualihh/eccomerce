@@ -89,7 +89,7 @@ const listProduct = async (req, res) => {
     try {
 
       const {productId} = req.body;
-      
+
       const product = await productModel.findById(productId);
 
       res.json({success:true, product}) 
@@ -100,4 +100,8 @@ const listProduct = async (req, res) => {
     }
 }
 
-export { addProduct, listProduct, removeProduct, singleProduct}
+export {
+   addProduct, 
+   listProduct, 
+   removeProduct, 
+   singleProduct}
