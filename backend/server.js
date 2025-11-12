@@ -15,8 +15,9 @@ connectCloudinary();
 
 
 // midlewares
-app.use(express.json());
-app.use(cors())
+app.use(express.json());// to use json string to object
+app.use(cors()) // to cross in to another domain
+
 
 // api end points
 
