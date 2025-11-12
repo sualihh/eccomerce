@@ -14,9 +14,9 @@ productRouter.post('/add',
           {name:"image3", maxCount:1},
           {name:"image4", maxCount:1}
      ]),
-     addProduct)
-productRouter.get('/list', listProduct)
-productRouter.post('/remove',adminAuth, removeProduct)
-productRouter.post('/single', singleProduct)
+     addProduct);
+productRouter.get('/list', listProduct);
+productRouter.post('/remove',adminAuth, removeProduct);
+productRouter.post('/single', singleProduct);
 
 export default productRouter;
