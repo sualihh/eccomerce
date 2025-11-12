@@ -79,7 +79,10 @@ const listProduct = async (req, res) => {
       res.json({success:true, msg: "Product removed   successfully"}) 
     } catch (error) {
        console.log(error);
-       res.json({success:false, msg: error.msg})
+       res.json({
+          success:false, 
+          msg: error.msg
+        })
     }
 }
 
