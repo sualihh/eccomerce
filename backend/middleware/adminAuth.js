@@ -17,7 +17,7 @@ const adminAuth = async (req, res, next) => {
         // decode token
         const token_decode = jwt.verify(token, process.env.JWT_SECRET)
 
-        // CHECKING THE decoded token is equal to admin email and password
+        // CHECKING THE decoded token is same to admin email and password
 
         if (token_decode !== process.env.ADMIN_EMAIL+process.env.ADMIN_PASSWORD) {
              return res.json({
