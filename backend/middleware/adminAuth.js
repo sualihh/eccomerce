@@ -19,8 +19,21 @@ const adminAuth = async (req, res, next) => {
 
         // CHECKING THE decoded token is equal to admin email and password
 
-        if (token_decode !== process.env.ADMIN_EMAIL+process.env.ADMIN_PASSWORD)
+        if (token_decode !== process.env.ADMIN_EMAIL+process.env.ADMIN_PASSWORD) {
+             return res.json({
+                success:false,
+                message:"NOT AUTHORIZED"
+            })
+        } 
+        next();
     } catch (error) {
-        
+        console.log(error);
+        res.json({
+                success:false,
+                message:"NOT AUTHORIZED"
+            })
     }
 }
+
+
+export default adminAuth;
