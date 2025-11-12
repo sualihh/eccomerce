@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema({
     },
   
 },{minimize:false});
-
+//In Mongoose, by default, empty objects in a document are removed when saving to MongoDB. This behavior is called “minimizing” so in this time it  store empty object as it is
 
 
 const userModel = mongoose.models.user || mongoose.model('user', userSchema)
