@@ -124,7 +124,10 @@ const adminLogin= async (req, res) => {
             res.json({success:true, token})
     } else {
          console.log(error);
-         res.json({success:false})
+         res.json({
+            success:false
+            , msg: 'invalid admin credentials'
+        })
     }
 } catch (error) {
         console.log(error);
