@@ -18,7 +18,7 @@ const addProduct = async (req, res) => {
       // toupload in to cloudinary      
         let imagesURL = await Promise.all(
           images.map(async (item)=> {
-            // to change buffer in to base 64
+            // to change buffer in to base 64 because multer store in buffer format
             const base64 = `data:${item.mimetype};base64,${item.buffer.toString("base64")}`;
 
             let result = await cloudinary.uploader.upload(base64, {resource_type:'image'});
@@ -87,11 +87,14 @@ const listProduct = async (req, res) => {
   const singleProduct = async(req, res) => {
 
     try {
-      
+
       const {productId} = req.body;
+      
       const product = await productModel.findById(productId);
+
       res.json({success:true, product}) 
     } catch (error) {
+
       console.log(error);
       res.json({success:false, msg: error.msg})
     }
