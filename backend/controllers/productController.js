@@ -37,7 +37,7 @@ const addProduct = async (req, res) => {
           category,
           subCategory,
           bestSeller: bestSeller === 'true' ? true : false,
-          sizes: JSON.parse(sizes) ,
+          sizes: JSON.parse(sizes),//converts the string into a JavaScript array or object
           images: imagesURL,
           date:Date.now()
         }
@@ -52,7 +52,10 @@ const addProduct = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.json({success:false, msg: error.msg})
+        res.json({
+          success:false, 
+          msg: error.msg
+        })
     }
 }
 
