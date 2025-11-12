@@ -70,7 +70,10 @@ const registerUser = async (req, res) => {
 
         if (!validator.isEmail(email)) {
 
-            return res.json({success:false, msg: 'enter valid email'})
+            return res.json({
+                success:false, 
+                msg: 'enter valid email'
+            })
             
         }
         if (password.length < 8) {
