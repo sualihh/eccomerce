@@ -66,7 +66,10 @@ const listProduct = async (req, res) => {
 
   } catch (error) {
          console.log(error);
-        res.json({success:false, msg: error.msg})
+        res.json({
+          success:false, 
+          msg: error.msg
+        })
   }
 }
 
