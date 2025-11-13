@@ -7,9 +7,13 @@ import List from "./pages/List";
 import Orders from "./pages/Orders";
 import Login from "./components/login";
 
+
+//import backend url
+export const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
 const App = () => {
   // state variable  for admin if it authenticated or not
-  const { token, setToken } = useState("uu");
+  const [ token, setToken ] = useState("");
 
   return (
     <div className="bg-gray-50 min-h-screen">
