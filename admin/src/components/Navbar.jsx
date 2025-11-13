@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <div>
       <img className='w-[max(10%, 80px)]' src={assets.logo} alt="logo" />
-      <button>Logout</button>
+      <button className='text-9xl'>Logout</button>
     </div>
   )
 }
