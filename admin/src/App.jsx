@@ -18,7 +18,7 @@ const App = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {token === "" ? (
-        <Login />
+        <Login setToken={setToken}/>//giving the login component the ability to update token
       ) : (
         <>
           <Navbar />

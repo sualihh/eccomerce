@@ -1,24 +1,26 @@
 import React, { useState } from "react";
 import { backendUrl } from "../App";
+import axios from "axios";
 
 const login = () => {
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
-  const onSubmitHandler = async () => {
+  const onSubmitHandler = async (e) => {
     try {
       
       e.preventDefault();// toprevent relode the page when submit clicked
       // console.log(email+password);
 
       // with sending data to backend (email and password)
-      const responce = await axios.post(backendUrl + "/api/user/admin", {email,password})
+      const responce = await axios.post(`${backendUrl}/api/user/admin`, {email,password,})
 
       console.log(responce);
       
 
     } catch (error) {
+      console.log(error);
       
     }
   }
