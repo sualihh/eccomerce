@@ -5,11 +5,11 @@ import { Routes, Route } from "react-router-dom";
 import Add from "./pages/Add";
 import List from "./pages/List";
 import Orders from "./pages/Orders";
-import Login from "./pages/Login";
+import Login from "./components/login";
 
 const App = () => {
   // state variable  for admin if it authenticated or not
-  const { token, setToken } = useState("");
+  const { token, setToken } = useState("uu");
 
   return (
     <div className="bg-gray-50 min-h-screen">
