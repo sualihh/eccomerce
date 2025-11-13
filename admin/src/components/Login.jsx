@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { backendUrl } from "../App";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-const login = () => {
+const login = ({setToken}) => {  // by destructureing Settoken
 
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -11,17 +12,23 @@ const login = () => {
     try {
       
       e.preventDefault();// toprevent relode the page when submit clicked
-      // console.log(email+password);
+      console.log(email+password);
 
       // with sending data to backend (email and password)
-      const responce = await axios.post(`${backendUrl}/api/user/admin`, {email,password,})
+      const responce = await axios.post(backendUrl + "/api/user/admin", {email,password,})
 
-      console.log(responce);
+      // console.log(responce);
+
+      if (responce.data.success) {
+          setToken(responce.data.token)
+      } else {
+        toast.error("Invalid Credentials")
+      }
       
 
     } catch (error) {
       console.log(error);
-      
+        toast.error(error.message)
     }
   }
   return (

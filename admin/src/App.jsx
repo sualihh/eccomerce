@@ -6,6 +6,7 @@ import Add from "./pages/Add";
 import List from "./pages/List";
 import Orders from "./pages/Orders";
 import Login from "./components/login";
+import { ToastContainer } from 'react-toastify';
 
 
 //import backend url
@@ -13,10 +14,17 @@ export const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
   // state variable  for admin if it authenticated or not
-  const [ token, setToken ] = useState("");
+  const [ token, setToken ] = useState(localStorage.getItem("token")?localStorage.getItem("token"):"");
+
+
+  // when refresh this automatically logout to sole this we use useEffect and localstorage
+  useEffect(() => {
+    localStorage.setItem("token", token);
+  },[token])
 
   return (
     <div className="bg-gray-50 min-h-screen">
+      <ToastContainer />  
       {token === "" ? (
         <Login setToken={setToken}/>//giving the login component the ability to update token
       ) : (
