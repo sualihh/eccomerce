@@ -3,6 +3,7 @@ import { assets } from "../assets/assets";
 import { useState } from "react";
 import axios from "axios";
 import { backendUrl } from "../App";
+import { toast } from "react-toastify";
 
 const Add = ({token}) => {
 
@@ -49,8 +50,25 @@ const Add = ({token}) => {
       // console.log(responce.data);
         // to clear the page to after add
 
+        if(responce.data.success) {
+          // by importing toast package
+          toast.success(responce.data.message)
+          setName('')
+          setDescription('')
+          setPrice('')
+          setImage1(false)
+          setImage2(false)
+          setImage3(false)
+          setImage4(false)
+          setName('')
+          setName('')
+        } else {
+          toast.error(responce.data.error)
+        }
+
     } catch (error) {
-      
+      console.log(error)
+      toast.error(error.message)
     }
   }
 
