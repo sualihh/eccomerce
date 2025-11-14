@@ -46,8 +46,8 @@ const Add = ({token}) => {
       // sending  these states by importing axios and by importing backendUrlfrom app.js
       const responce = await axios.post(backendUrl+"/api/product/add",formData,{headers:{token}});
 
-      console.log(responce.data);
-      
+      // console.log(responce.data);
+        // to clear the page to after add
 
     } catch (error) {
       
