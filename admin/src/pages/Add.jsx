@@ -22,7 +22,7 @@ const Add = ({token}) => {
   const [sizes, setSizes] = useState([]);
 
 
-  const onSubmitHandler = async() => {
+  const onSubmitHandler = async(e) => {
     e.preventDefault();
 
     try {
