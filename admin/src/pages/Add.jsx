@@ -44,7 +44,7 @@ const Add = ({token}) => {
 
 
       // sending  these states by importing axios and by importing backendUrlfrom app.js
-      const responce = await axios.post(backendUrl+"/api/product/add",formData});
+      const responce = await axios.post(backendUrl+"/api/product/add",formData);
 
       console.log(responce.data);
       
@@ -117,7 +117,7 @@ const Add = ({token}) => {
 
       <div>
         <p className="mb-2">Product Price</p>
-        <input onChange={(e)=> setCategory(e.target.value)} value={price} className="w-full px-3 py-2 sm:w-[120px]" type="Number" min={0}  placeholder="99"/>
+        <input onChange={(e)=> setPrice(e.target.value)} value={price} className="w-full px-3 py-2 sm:w-[120px]" type="number" min={0}  placeholder="99"/>
       </div>
     </div>
 
