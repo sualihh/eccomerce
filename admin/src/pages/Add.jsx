@@ -47,18 +47,24 @@ const Add = () => {
 
     <div className="w-full">
       <p className="mb-2">Product name</p>
-      <input className="w-full max-w-[500px] px-3 py-2" type="text" placeholder="Type here" required/>
+      <input 
+      onChange={(e)=> setName(e.target.value)} value={name}
+      className="w-full max-w-[500px] px-3 py-2" type="text" placeholder="Type here" required/>
     </div>
      <div className="w-full">
       <p className="mb-2">Product description</p>
-      <textarea className="w-full max-w-[500px] px-3 py-2" type="text" placeholder=" write content here" required/>
+      <textarea 
+      onChange={(e)=> setDescription(e.target.value)} value={description}
+      className="w-full max-w-[500px] px-3 py-2" type="text" placeholder=" write content here" required/>
     </div>
 
     <div className="flex flex-col sm:flex-row gap-2 w-full sm:gap-8">
 
       <div>
         <p className="mb-2">Product category</p>
-        <select className="w-full px-3 py-2" name="" id="">
+        <select 
+        onChange={(e)=> setCategory(e.target.value)} 
+        className="w-full px-3 py-2" name="" id="">
           <option value="Men">Men</option>
           <option value="Women">Women</option>
           <option value="Kid">Kid</option>
@@ -67,7 +73,9 @@ const Add = () => {
 
       <div>
         <p className="mb-2"> subcategory</p>
-        <select className="w-full px-3 py-2" name="" id="">
+        <select 
+        onChange={(e)=> setSubCategory(e.target.value)} 
+        className="w-full px-3 py-2" name="" id="">
           <option value="Topwear">Topwear</option>
           <option value="Bottomwear">Bottomwear</option>
           <option value="Winterwear">Winterwear</option>
