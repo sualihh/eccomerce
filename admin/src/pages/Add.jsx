@@ -1,8 +1,10 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { useState } from "react";
+import axios from "axios";
+import { backendUrl } from "../App";
 
-const Add = () => {
+const Add = ({token}) => {
 
   // state variable to store images
 
@@ -20,27 +22,58 @@ const Add = () => {
   const [sizes, setSizes] = useState([]);
 
 
+  const onSubmitHandler = async() => {
+    e.preventDefault();
 
-  return <form className="flex flex-col w-full items-start gap-3">
+    try {
+      const formData= new FormData();
+
+
+      formData.append("name", name)
+      formData.append("description", description)
+      formData.append("price", price)
+      formData.append("category", category)
+      formData.append("subCategory", subCategory)
+      formData.append("bestseller", bestseller)
+      formData.append("sizes", JSON.stringify(sizes))// we cant send array in form data so we have to change it in to sring
+
+      image1 && formData.append("image1", image1)// sending images
+      image2 && formData.append("image2", image2)
+      image3 && formData.append("image3", image3)
+      image4 && formData.append("image4", image4)
+
+
+      // sending  these states by importing axios and by importing backendUrlfrom app.js
+      const responce = await axios.post(backendUrl+"/api/product/add",formData});
+
+      console.log(responce.data);
+      
+
+    } catch (error) {
+      
+    }
+  }
+
+  return <form  onSubmit={onSubmitHandler} className="flex flex-col w-full items-start gap-3">
     <div>
       <p className="mb-2">Uploadimage</p>
 
       <div className="flex gap-2">
         <label htmlFor="image1">
           <img className="w-20" src={!image1?assets.upload_area:URL.createObjectURL(image1)} alt="" />
-          <input onChange={(e)=> setImage1(e.target.value)} value={image1} type="file" id="image1" hidden/>
+          <input onChange={(e)=> setImage1(e.target.files[0])}  type="file" id="image1" hidden/>
         </label>
         <label htmlFor="image2">
           <img className="w-20" src={!image2?assets.upload_area:URL.createObjectURL(image2)} alt="" />
-          <input onChange={(e)=> setImage2(e.target.value)} value={image2} type="file" id="image2" hidden/>
+          <input onChange={(e)=> setImage2(e.target.files[0])} type="file" id="image2" hidden/>
         </label>
         <label htmlFor="image3">
           <img className="w-20" src={!image3?assets.upload_area:URL.createObjectURL(image3)} alt="" />
-          <input onChange={(e)=> setImage3(e.target.value)} value={image3} type="file" id="image3" hidden/>
+          <input onChange={(e)=> setImage3(e.target.files[0])} type="file" id="image3" hidden/>
         </label>
         <label htmlFor="image4">
           <img className="w-20" src={!image4?assets.upload_area:URL.createObjectURL(image4)} alt="" />
-          <input onChange={(e)=> setImage4(e.target.value)} value={image4} type="file" id="image4" hidden/>
+          <input onChange={(e)=> setImage4(e.target.files[0])} type="file" id="image4" hidden/>
         </label>
       </div>
     </div>
@@ -84,7 +117,7 @@ const Add = () => {
 
       <div>
         <p className="mb-2">Product Price</p>
-        <input className="w-full px-3 py-2 sm:w-[120px]" type="Number" min={0}  placeholder="99"/>
+        <input onChange={(e)=> setCategory(e.target.value)} value={price} className="w-full px-3 py-2 sm:w-[120px]" type="Number" min={0}  placeholder="99"/>
       </div>
     </div>
 
@@ -92,35 +125,37 @@ const Add = () => {
     <div>
       <p className="mb-2">Product Sizes</p>
       <div className="flex gap-3">
-        <div>
-          <p className="bg-slate-200 px-3 py-1 cursor-pointer">S</p>
+        <div onClick={() => setSizes(prev => prev.includes("S") ? prev.filter(item => item !== "S"): [...prev,"S"])}>
+          {/* // if thissize is clicked beforeit remove and if it is not clicked add this value */}
+          <p className={`${sizes.includes("S")? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>S</p>
+          {/* // when it get clicked  to store in an array */}
         </div>
 
         <div>
-          <p className="bg-slate-200 px-3 py-1 cursor-pointer">M</p>
+          <p onClick={() => setSizes(prev => prev.includes("M") ? prev.filter(item => item !== "M"): [...prev,"M"])} className={`${sizes.includes("M")? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>M</p>
         </div>
 
-        <div>
-          <p className="bg-slate-200 px-3 py-1 cursor-pointer">L</p>
+        <div onClick={() => setSizes(prev => prev.includes("L") ? prev.filter(item => item !== "L"): [...prev,"L"])}>
+          <p className={`${sizes.includes("l")? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>L</p>
         </div>
 
-        <div>
-          <p className="bg-slate-200 px-3 py-1 cursor-pointer">Xl</p>
+        <div onClick={() => setSizes(prev => prev.includes("Xl") ? prev.filter(item => item !== "Xl"): [...prev,"Xl"])}>
+          <p className={`${sizes.includes("Xl")? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>Xl</p>
         </div>
 
-        <div>
-          <p className="bg-slate-200 px-3 py-1 cursor-pointer">XXl</p>
+        <div onClick={() => setSizes(prev => prev.includes("XXl") ? prev.filter(item => item !== "XXl"): [...prev,"XXl"])}>
+          <p className={`${sizes.includes("XXl")? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>XXl</p>
         </div>
       </div>
     </div>
 
     <div  className="flex gap-2 mt-2">
-      <input type="checkbox" id="bestseller"/> 
+      <input onChange={() => setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id="bestseller"/> 
       <label className="cursor-pointer" htmlFor="bestseller">Added to bestseller</label>
     </div>
 
     <button type="submit" className="w-28 py-3 mt-4 bg-black text-white">Add</button>
-  </form>;
+  </form>
 };
 
 export default Add;
