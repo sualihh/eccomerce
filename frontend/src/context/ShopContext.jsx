@@ -1,8 +1,9 @@
 import { createContext, useEffect } from "react";
-import {products} from '../assets/assets'
+// import {products} from '../assets/assets'  because it serve me when i create ronend first for trying now i have to used from database
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import axios from "axios"
 
 
 export const ShopContext = createContext();
@@ -12,9 +13,11 @@ const ShopContextProvider = (props) => {
 
     const currency = '$';
     const delivery_fee = 10;
+    const backendUrl = import.meta.env.VITE_BACKEND_URL 
     const [search, setSearch] = useState('')
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({})
+    const [products, setProducts] = useState([])
     const navigate = useNavigate()
 
     const addToCart = async (itemId, size) => {
@@ -77,8 +80,23 @@ const ShopContextProvider = (props) => {
             }
         }return totalAmount;
     }
+
+
+    // create afunction after backe end and admin with creating stete variable of product
+    const getProductsData =async() => {
+        // install axios
+        try {
+            const responce = await axios.get(backendUrl+"/api/product/list")
+            console.log(responce);
+            
+        } catch (error) {
+            
+        }
+    }
+
+
     const value = {
-        products, currency, delivery_fee,search, setSearch, showSearch, setShowSearch, cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate
+        products, currency, delivery_fee,search, setSearch, showSearch, setShowSearch, cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl
     }
 
     return(
