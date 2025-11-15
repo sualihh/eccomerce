@@ -9,7 +9,7 @@ const BestSeller = () => {
     const [bestSeller, setBestSeller]=  useState([]);
 
     useEffect(() => {
-        const bestProduct = products.filter((item) => (item.bestseller))
+        const bestProduct = products.filter((item) => (item.bestSeller))
         setBestSeller(bestProduct.slice(0, 5))
     }, [products])
 
@@ -25,7 +25,7 @@ const BestSeller = () => {
       <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-y-6'>
         {/* {console.log(products)} */}
         {bestSeller.map((item, index) => (
-            <ProductItem key={index} id={item._id} image={item.image} name={item.name} price={item.price}/> 
+            <ProductItem key={index} id={item._id} images={item.images} name={item.name} price={item.price}/> 
           ))
         }
       </div>

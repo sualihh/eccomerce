@@ -19,7 +19,7 @@ const Add = ({token}) => {
   const [price, setPrice] = useState("")
   const [category, setCategory] = useState("Men")
   const [subCategory, setSubCategory] = useState("Topwear")
-  const [bestseller, setBestseller] = useState(false)
+  const [bestSeller, setBestSeller] = useState(false)
   const [sizes, setSizes] = useState([]);
 
 
@@ -35,7 +35,7 @@ const Add = ({token}) => {
       formData.append("price", price)
       formData.append("category", category)
       formData.append("subCategory", subCategory)
-      formData.append("bestseller", bestseller)
+      formData.append("bestSeller", bestSeller)
       formData.append("sizes", JSON.stringify(sizes))// we cant send array in form data so we have to change it in to sring
 
       image1 && formData.append("image1", image1)// sending images
@@ -154,7 +154,7 @@ const Add = ({token}) => {
         </div>
 
         <div onClick={() => setSizes(prev => prev.includes("L") ? prev.filter(item => item !== "L"): [...prev,"L"])}>
-          <p className={`${sizes.includes("l")? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>L</p>
+          <p className={`${sizes.includes("L")? "bg-pink-100":"bg-slate-200"} px-3 py-1 cursor-pointer`}>L</p>
         </div>
 
         <div onClick={() => setSizes(prev => prev.includes("Xl") ? prev.filter(item => item !== "Xl"): [...prev,"Xl"])}>
@@ -168,7 +168,7 @@ const Add = ({token}) => {
     </div>
 
     <div  className="flex gap-2 mt-2">
-      <input onChange={() => setBestseller(prev => !prev)} checked={bestseller} type="checkbox" id="bestseller"/> 
+      <input onChange={() => setBestSeller(prev => !prev)} checked={bestSeller} type="checkbox" id="bestseller"/> 
       <label className="cursor-pointer" htmlFor="bestseller">Added to bestseller</label>
     </div>
 
