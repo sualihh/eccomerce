@@ -3,7 +3,8 @@ import { createContext, useEffect } from "react";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
+
 
 
 export const ShopContext = createContext();
@@ -13,7 +14,7 @@ const ShopContextProvider = (props) => {
 
     const currency = '$';
     const delivery_fee = 10;
-    const backendUrl = import.meta.env.VITE_BACKEND_URL 
+    const backendUrl = import.meta.env.VITE_BACKEND_URL
     const [search, setSearch] = useState('')
     const [showSearch, setShowSearch] = useState(false);
     const [cartItems, setCartItems] = useState({})
@@ -83,17 +84,31 @@ const ShopContextProvider = (props) => {
 
 
     // create afunction after backe end and admin with creating stete variable of product
-    const getProductsData =async() => {
+    const getProductsData = async() => {
         // install axios
         try {
-            const responce = await axios.get(backendUrl+"/api/product/list")
-            console.log(responce);
+            const response = await axios.get(backendUrl+ '/api/product/list')
+            // setProducts()
+            if (response.data){
+                setProducts(response.data.products)
+            }else {
+                toast.error(response.data.message)
+            }
+
             
         } catch (error) {
+            console.log(error);
+            toast.error(error.message)
             
         }
     }
 
+
+    //use effect to get all product
+
+    useEffect(()=> {
+        getProductsData()
+    },[])
 
     const value = {
         products, currency, delivery_fee,search, setSearch, showSearch, setShowSearch, cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl
