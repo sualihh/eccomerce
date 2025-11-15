@@ -12,7 +12,7 @@ const login = ({setToken}) => {  // by destructureing Settoken
     try {
       
       e.preventDefault();// toprevent relode the page when submit clicked
-      console.log(email+password);
+      // console.log(email+password);
 
       // with sending data to backend (email and password)
       const responce = await axios.post(backendUrl + "/api/user/admin", {email,password,})
