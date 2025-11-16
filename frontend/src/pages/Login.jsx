@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ShopContext } from '../context/ShopContext'
 import axios from 'axios'
+import { toast } from 'react-toastify'
 
 const Login = () => {
 
 
  
 
-  const [currentState, setCurrentState] = useState('Sign Up')
-  const {token, setToken, navigate, backendurl} = useContext(ShopContext)
+  const [currentState, setCurrentState] = useState('Login')
+  const {token, setToken, navigate, backendUrl} = useContext(ShopContext)
   // creating state variable to user login
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -21,20 +22,46 @@ const Login = () => {
     try {
       
       if (currentState === 'Sign Up'){
+        // console.log(backendurl);
         
-        const responce = await axios.post(backendurl + "api/user/register", {name,email,password})
+        const responce = await axios.post(backendUrl + "/api/user/register", {name,email,password})
 
         console.log(responce.data);
+
+        if (responce.data.success) {
+          setToken(responce.data.token)
+          localStorage.setItem("token", responce.data.token)
+        } else {
+          toast.error(responce.data.msg)
+        }
         
       } else {
+        const responce = await axios.post(backendUrl + "/api/user/login", {email,password})
+
+        console.log(responce.data);
+         if (responce.data.success) {
+          setToken(responce.data.token)
+          localStorage.setItem("token", responce.data.token)
+        } else {
+          toast.error(responce.data.msg)
+        }
+
 
       }
     } catch (error) {
-      
+      console.log("dd"+error)
+      toast.error(error.message)
     }
   }
 
 
+  // after user register redirect to home page and this do when it automaticaly logout to solve this go to shopcontext
+
+  useEffect(()=> {
+    if (token) {
+    navigate("/")
+    }
+  },[token])
 
 
   return (
@@ -53,7 +80,7 @@ const Login = () => {
         ? <p className='cursor-pointer' onClick={()=> setCurrentState('Sign Up')}>Create account</p>
         : <p className='cursor-pointer' onClick={()=> setCurrentState('Login')}>Login</p>}
       </div>
-      <button className='bg-black text-white font-light px-8 py-2'>{currentState === 'Login'? 'Sign In' : 'Sign Up'}</button>
+      <button type="submit" className='bg-black text-white font-light px-8 py-2'>{currentState === 'Login'? 'Sign In' : 'Sign Up'}</button>
     </form>
   )
 }
