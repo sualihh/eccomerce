@@ -3,6 +3,8 @@ import jwt from 'jsonwebtoken'
 const authUser = async (req, res, next) => {
     const { token } = req.headers;
 
+    console.log("authorized");
+
     if (!token) {
         return res.json({ success: false, message: "Not Authorized" })
     }
@@ -11,7 +13,8 @@ const authUser = async (req, res, next) => {
         const token_decode = jwt.verify(token, process.env.JWT_SECRET)// we get users id because we we encode this token in register/login we  used id
 
         req.body.userId = token_decode.id;
-        next()
+
+        next();
     } catch (error) {
         console.log(error);
         req.json({ success: false, message: error.message })
