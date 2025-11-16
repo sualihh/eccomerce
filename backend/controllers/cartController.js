@@ -8,7 +8,7 @@ import userModel from "../models/userModel.js";
 const addToCart = async (req, res) => {
 
     try {
-        console.log("adding");
+        // console.log("adding");
 
         const { userId, itemId, size } = req.body;
 
@@ -81,7 +81,9 @@ const getUserCart = async (req, res) => {
         let cartData = await userData.cartData;
 
         res.json({ success: true, cartData })
-
+        // {
+        //     console.log('add');
+        // }
 
 
     } catch (error) {

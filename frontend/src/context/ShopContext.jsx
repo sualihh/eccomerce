@@ -124,6 +124,23 @@ const ShopContextProvider = (props) => {
     }
 
 
+    const getUserCart =  async (token) => {
+        try {
+            
+            // const response =await axios.post(backendUrl+"/api/cart/get",{headers:{token}})
+             const response = await axios.post(backendUrl+ '/api/cart/get',{},{headers:{token}})
+            
+            if (response.data.success) {
+                setCartItems(response.data.cartData)
+                // {console.log('add');
+            
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error(error.message)
+        }
+    }
+
     //use effect to get all product
 
     useEffect(()=> {
@@ -133,8 +150,9 @@ const ShopContextProvider = (props) => {
     useEffect(() => {
         if (!token && localStorage.getItem("token")) {
             setToken(localStorage.getItem("token"))
+            getUserCart(localStorage.getItem("token"))
         }
-    })
+    },[])
 
     const value = {
         products, currency, delivery_fee,search, setSearch, showSearch, setShowSearch, cartItems, addToCart, getCartCount, updateQuantity, getCartAmount, navigate, backendUrl,setToken,token
