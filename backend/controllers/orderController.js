@@ -51,6 +51,20 @@ const placeOrderRazorpay = async (req, res) => {
 
 const allOrders = async (req, res) => {
 
+
+    try {
+        // feach all order from db
+
+        const orders = await orderModel.find({})
+        res.json({
+            success: true,
+            orders
+        })
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+
+    }
 }
 
 
@@ -75,6 +89,28 @@ const userOrders = async (req, res) => {
 
 const updateStatus = async (req, res) => {
 
+    try {
+
+        console.log("updating");
+
+        const { orderId, Status } = req.body;
+
+        // console.log(Status);
+        // const order = await orderModel.findById(orderId);
+        // console.log(order);
+
+        await orderModel.findByIdAndUpdate(orderId, { Status })
+        res.json({ success: true, message: "Status Updated" })
+
+        // console.log("updated in db");
+
+
+    } catch (error) {
+        console.log(error);
+        res.json({ success: false, message: error.message })
+
+
+    }
 }
 
 
