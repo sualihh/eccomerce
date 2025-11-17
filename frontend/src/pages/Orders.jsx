@@ -24,16 +24,20 @@ const loadOrderData = async () => {
 
     if (response.data.success) {
       let allOrderItem = [];
-      response.data.orders.map((orders) => {
-        orders.items.map((item) => {
-          // item["status"] = orderData.status
+      response.data.orders.map((order) => {
+        order.items.map((item) => {
+          // item['status'] = orderData.Status
           // item["payment"] = orderData.payment
           // item["paymentMethod"] = orderData.paymentMethod
           // item["date"] = orderData.date
+          item.status = order.Status;
+        item.payment = order.payment;
+        item.paymentMethod = order.paymentMethod;
+       item.date = order.date;
           allOrderItem.push(item)
         })
       })
-      // console.log(allOrderItem);
+      console.log(allOrderItem);
 
       setOrderData(allOrderItem.reverse())
       
