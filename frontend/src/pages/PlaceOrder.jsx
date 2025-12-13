@@ -18,6 +18,7 @@ const PlaceOrder = () => {
     street:'',
     city:'',
     state:'',
+    zipcode:'',
   })
 
   const onChangeHandler = (event) => {
