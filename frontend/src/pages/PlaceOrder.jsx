@@ -13,7 +13,6 @@ const PlaceOrder = () => {
 
   const [formData, setFormdata] = useState({
     firstname:'',
-    lastname:'',
   })
 
   const onChangeHandler = (event) => {
