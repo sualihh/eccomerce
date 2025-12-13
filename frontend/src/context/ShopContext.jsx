@@ -1,5 +1,4 @@
 import { createContext, useEffect } from "react";
-// import {products} from '../assets/assets'  because it serve me when i create ronend first for trying now i have to used from database
 import { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
