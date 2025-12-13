@@ -15,6 +15,7 @@ const PlaceOrder = () => {
     firstname:'',
     lastname:'',
     email:'',
+    street:'',
   })
 
   const onChangeHandler = (event) => {
