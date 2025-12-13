@@ -14,8 +14,6 @@ const PlaceOrder = () => {
   const [formData, setFormdata] = useState({
     firstname:'',
     lastname:'',
-    email:'',
-    street:'',
   })
 
   const onChangeHandler = (event) => {
