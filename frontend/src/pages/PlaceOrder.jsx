@@ -12,6 +12,7 @@ const PlaceOrder = () => {
   const {navigate, backendUrl, token, cartItems, setCartItems, getCartAmount, delivery_fee, products} = useContext(ShopContext);
 
   const [formData, setFormdata] = useState({
+    firstname:'',
   })
 
   const onChangeHandler = (event) => {
