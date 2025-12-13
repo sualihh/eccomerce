@@ -20,7 +20,6 @@ const PlaceOrder = () => {
     state:'',
     zipcode:'',
     country:'',
-    phone:''
   })
 
   const onChangeHandler = (event) => {
