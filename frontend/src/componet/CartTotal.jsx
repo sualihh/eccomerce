@@ -10,7 +10,8 @@ const CartTotal = () => {
       <  
 
       <div >
-        
+        <div >
+        </div>
         
 
 
