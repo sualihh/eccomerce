@@ -22,8 +22,7 @@ const CartTotal = () => {
         </div>
 
 
-        <div >
-        </div>
+        
       </div> 
     </div>
   )
