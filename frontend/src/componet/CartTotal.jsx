@@ -11,7 +11,7 @@ const CartTotal = () => {
         <Title text1={'TOTAL'} text2={'CART'} />
       </div>  
 
-      <div >
+      <div className='flex flex-col gap-2 mt-2 text-sm'>
         <div >
         </div>
         
