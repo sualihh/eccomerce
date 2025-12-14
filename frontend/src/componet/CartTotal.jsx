@@ -8,7 +8,6 @@ const CartTotal = () => {
   return (
     <div >
       <div >
-        <Title text1={'TOTAL'} text2={'CART'} />
       </div>  
 
       <div >
