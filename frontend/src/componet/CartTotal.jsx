@@ -22,7 +22,7 @@ const CartTotal = () => {
         </div>
 
 
-        <div className='flex justify-between'>
+        <div >
         </div>
       </div> 
     </div>
