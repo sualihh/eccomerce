@@ -17,7 +17,6 @@ const CartTotal = () => {
             <p>{currency}{getCartAmount()}.00</p>
         </div>
         <div className='flex justify-between'>
-          <p></p>
         </div>
 
 
