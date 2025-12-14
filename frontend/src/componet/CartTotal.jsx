@@ -12,7 +12,7 @@ const CartTotal = () => {
       </div>  
 
       <div className='flex flex-col gap-2 mt-2 text-sm'>
-        <div >
+        <div className='flex justify-between'>
         </div>
         
 
