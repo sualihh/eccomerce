@@ -16,8 +16,7 @@ const CartTotal = () => {
             <p>Subtotal</p>
             <p>{currency}{getCartAmount()}.00</p>
         </div>
-        <div >
-        </div>
+        
 
 
         
