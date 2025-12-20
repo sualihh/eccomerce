@@ -50,7 +50,10 @@ const loadOrderData = async () => {
 }
 
 
- 
+  useEffect(() => {
+    loadOrderData()
+  },[token])
+
 
   return (
     <div className='border-t pt-16 '>
