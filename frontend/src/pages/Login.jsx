@@ -16,44 +16,7 @@ const Login = () => {
   const [password, setPassword] = useState('')
 
 
-   const onSubmitHandler = async (event) => {
-    event.preventDefault()
-
-    try {
-      
-      if (currentState === 'Sign Up'){
-        // console.log(backendurl);
-        
-        const responce = await axios.post(backendUrl + "/api/user/register", {name,email,password})
-
-        console.log(responce.data);
-
-        if (responce.data.success) {
-          setToken(responce.data.token)
-          localStorage.setItem("token", responce.data.token)
-        } else {
-          toast.error(responce.data.msg)
-        }
-        
-      } else {
-        const responce = await axios.post(backendUrl + "/api/user/login", {email,password})
-
-        console.log(responce.data);
-         if (responce.data.success) {
-          setToken(responce.data.token)
-          localStorage.setItem("token", responce.data.token)
-        } else {
-          toast.error(responce.data.msg)
-        }
-
-
-      }
-    } catch (error) {
-      console.log("dd"+error)
-      toast.error(error.message)
-    }
-  }
-
+  
 
   // after user register redirect to home page and this do when it automaticaly logout to solve this go to shopcontext
 
