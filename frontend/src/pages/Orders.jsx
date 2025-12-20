@@ -10,6 +10,44 @@ const Orders = () => {
   const [orderData, setOrderData] = useState([])
 
   // to load orders
+const loadOrderData = async () => {
+
+  try {
+
+    if(!token) {
+      return null
+    }
+
+    const response = await axios.post(backendUrl+ "/api/orders/userorders", {}, {headers: {token}})
+
+    // console.log(response.data);
+
+    if (response.data.success) {
+      let allOrderItem = [];
+      response.data.orders.map((order) => {
+        order.items.map((item) => {
+          // item['status'] = orderData.Status
+          // item["payment"] = orderData.payment
+          // item["paymentMethod"] = orderData.paymentMethod
+          // item["date"] = orderData.date
+          item.status = order.Status;
+        item.payment = order.payment;
+        item.paymentMethod = order.paymentMethod;
+       item.date = order.date;
+          allOrderItem.push(item)
+        })
+      })
+      console.log(allOrderItem);
+
+      setOrderData(allOrderItem.reverse())
+      
+    }
+    
+    
+  } catch (error) {
+    
+  }
+}
 
 
   useEffect(() => {
