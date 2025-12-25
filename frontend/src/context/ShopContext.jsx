@@ -86,7 +86,21 @@ const ShopContextProvider = (props) => {
         }
     }
 
-  
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const items in cartItems) {
+            let itemInfo = products.find((product)=> product._id === items)
+            for(const item in cartItems[items]) {
+                try {
+                    if (cartItems[items][item] > 0) {
+                        totalAmount += itemInfo.price * cartItems[items][item];
+                    }
+                } catch (error) {
+            }
+            }
+        }return totalAmount;
+    }
+
 
     // create afunction after backe end and admin with creating stete variable of product
     const getProductsData = async() => {
