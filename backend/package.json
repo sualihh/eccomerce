@@ -24,5 +24,8 @@
     "razorpay": "^2.9.6",
     "stripe": "^19.2.0",
     "validator": "^13.15.20"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
   }
 }
