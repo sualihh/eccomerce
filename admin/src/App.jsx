@@ -17,7 +17,7 @@ const App = () => {
   const [ token, setToken ] = useState(localStorage.getItem("token")?localStorage.getItem("token"):"");
 
 
-  
+  // when refresh this automatically logout to solve this we use useEffect and localstorage
   useEffect(() => {
     localStorage.setItem("token", token);
   },[token])
