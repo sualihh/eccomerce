@@ -50,7 +50,6 @@ const Add = ({token}) => {
         // to clear the page to after add
 
         if(responce.data.success) {
-          // by importing toast package
           toast.success(responce.data.message)
           setName('')
           setDescription('')
