@@ -9,6 +9,7 @@ const List = ({token}) => {
   const [list, setList] =useState([])
 
   const fetchList = async () => {
+    
       try {
         // to get all elements   by importing backendUrl from app
         const responce = await axios.get(backendUrl+ '/api/product/list')
