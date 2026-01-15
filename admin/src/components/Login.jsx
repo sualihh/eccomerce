@@ -2,6 +2,11 @@ import React, { useState } from "react";
 import { backendUrl } from "../App";
 import axios from "axios";
 import { toast } from "react-toastify";
+ult();// toprevent relode the page when submit clicked
+      // console.log(email+password);
+
+      // with sending data to backend (email and password)
+      const responce = await axios.post(backendUrl + "/api/user/admin", {email,password,})
 
 const login = ({setToken}) => {  // by destructureing Settoken
 
@@ -11,13 +16,7 @@ const login = ({setToken}) => {  // by destructureing Settoken
   const onSubmitHandler = async (e) => {
     try {
       
-      e.preventDefault();// toprevent relode the page when submit clicked
-      // console.log(email+password);
-
-      // with sending data to backend (email and password)
-      const responce = await axios.post(backendUrl + "/api/user/admin", {email,password,})
-
-      // console.log(responce);
+      e.preventDefa
 
       if (responce.data.success) {
           setToken(responce.data.token)
