@@ -20,6 +20,7 @@ const login = ({setToken}) => {  // by destructureing Settoken
       e.preventDefa
 
       if (responce.data.success) {
+      console.log(responce.data.token);
           setToken(responce.data.token)
       } else {
         toast.error("Invalid Credentials")
