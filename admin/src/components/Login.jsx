@@ -9,7 +9,6 @@ ult();// toprevent relode the page when submit clicked
       const responce = await axios.post(backendUrl + "/api/user/admin", {email,password,})
 
       // console.log(responce);
-      
 const login = ({setToken}) => {  // by destructureing Settoken
 
   const [email, setEmail] = useState("")
